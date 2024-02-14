@@ -1,0 +1,14 @@
+<!--
+    showlinks.html is a navigation bar. 
+    This navigation bar needs to be shown in all the html pages we will be creating.
+    Hence, we use the what is displayed below to do that:
+    
+    {% macro show_links() %}  in 
+
+    {% endmacro % }
+
+    The show_links is a function, which will be imported into the each of the html files that will be created
+    The show_links is used in any html file as seen below:
+    {% from "showlinks.html" import show_links %}
+
+  -->

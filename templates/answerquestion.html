@@ -1,0 +1,54 @@
+{% from "showlinks.html" import show_links with context %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename = 'home.css')}}"
+    />
+  </head>
+  <body>
+    <div class="parent">
+      <div class="header mb-2">{{ show_links(user) }}</div>
+
+      <div class="questions_answered container text-light p-3">
+        <h1>Answer Questions.</h1>
+        <hr class="text-light" />
+        <div>
+          <h6>{{ question['question_text'] }}</h6>
+          <form action = "{{ url_for('answerquestion', question_id = question['id']) }}"  class="m-3" method = "POST" >
+            <div class="form-floating mb-3">
+              <textarea
+                class="form-control text-dark"
+                placeholder="Enter your Answer."
+                id="floatingTextarea"
+                name="answer"
+              ></textarea>
+              <label for="floatingTextarea" class="text-dark">Enter the Answer.</label>
+            </div>
+  
+            <button type="submit" class="btn btn-sm btn-success">Submit</button>
+          </form>
+        </div>   
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+{% macro show_links(user) %}
+<ul class="nav justify-content-center p-1">
+  <li class="nav-item">
+    <a
+      class="nav-link active text-dark"
+      aria-current="page"
+      href="{{ url_for('index') }}"
+      >Quiz App Flask</a
+    >
+  </li>
+  {% if not user %}
+  <!-- this is for the display of the login and register buttons when the user is not logged in and also for the removal of the register and login buttons when the user is logged in-->
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('login') }}">login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('register') }}">register</a>
+  </li>
+  {% endif %}
+
+  {% if user and user['admin'] == 0 and user['teacher'] == 0 %}
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('askquestions') }}"
+      >Ask Questions</a
+    >
+  </li>
+  {% endif %} 
+
+
+  {% if user and user['teacher'] == 1 %}
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('unansweredquestions') }}"
+      >Unanswered Questions</a
+    >
+  </li>
+  {% endif %}
+
+  {% if user['admin'] == 1 %}
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('allusers') }}">all users</a>
+  </li>
+  {% endif %}
+
+  {% if user %}
+  <!--This is used if there is a user logged in already, hence only the logout button should be displayed-->
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="{{ url_for('logout') }}">logout</a>
+  </li>
+  {% endif %} 
+  
+  {% if user %}
+  <li class="nav-item">
+    <a class="nav-link text-dark" href="#">User : {{ user['name'] }}</a>
+  </li>
+  {% endif %}
+</ul>
+
+{% endmacro %}
